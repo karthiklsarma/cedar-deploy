@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cedar-engine
+spec:
+  selector:
+    matchLabels:
+      app: cedar-engine
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: cedar-engine
+    spec:
+      containers:
+      - name: cedar-engine
+        image: cedarcr.azurecr.io/cedar-engine:v1
+        imagePullPolicy: Always
+        readinessProbe:
+          httpGet:
+            port: 8080
+            path: /status
+        livenessProbe:
+          httpGet:
+            port: 8080
+            path: /status
+          periodSeconds: 10
+        resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
