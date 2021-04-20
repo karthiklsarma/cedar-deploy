@@ -5,6 +5,9 @@
 
 RESOURCE_GROUP="cedar-rg"
 AKS_CLUSTER_NAME="cedar-ks"
+EVENTHUB_NAMESPACE="cedarhub"
+EVENTHUB_NAME="locationhub"
+LOCATION="uswest"
 
 # Parameter 'ACR_NAME' must conform to the following pattern: '^[a-zA-Z0-9]*$'.
 ACR_NAME="cedarcr"
@@ -14,7 +17,7 @@ SERVICE_PRINCIPAL="" #DO NOT COMMIT THIS
 SECRET="" #DO NOT COMMIT THIS
 
 if [ $(az group exists --name $RESOURCE_GROUP) = false ]; then
-    az group create --name $RESOURCE_GROUP --location uswest
+    az group create --name $RESOURCE_GROUP --location $LOCATION
 fi
 
 az aks create \
@@ -35,3 +38,7 @@ ACR_ID=$(az acr show --name "$ACR_NAME" --resource-group "$ACR_RESOURCE_GROUP" -
 
 # Create role assignment
 az role assignment create --assignee $CLIENT_ID --role acrpull --scope $ACR_ID
+
+az eventhubs namespace create --name $EVENTHUB_NAMESPACE --resource-group $RESOURCE_GROUP -l $LOCATION
+# Create an event hub. Specify a name for the event hub. 
+az eventhubs eventhub create --name "locationhub" --resource-group $RESOURCE_GROUP --namespace-name $EVENTHUB_NAMESPACE
