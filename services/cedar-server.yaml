@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: cedar-engine-service
+  name: cedar-server-service
 spec:
   type: LoadBalancer
   selector:
-    app: cedar-engine
+    app: cedar-server
   ports:
     - protocol: TCP
       port: 8080

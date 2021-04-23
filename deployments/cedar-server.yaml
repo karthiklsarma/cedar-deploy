@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cedar-server
+spec:
+  selector:
+    matchLabels:
+      app: cedar-server
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: cedar-server
+    spec:
+      containers:
+      - name: cedar-server
+        image: cedarcr.azurecr.io/cedar-server:v1
+        imagePullPolicy: Always
+        env:
+        - name: STREAM_CONN_STR
+          valueFrom:
+            secretKeyRef:
+              name: cedar-stream
+              key: connectionstring
+        readinessProbe:
+          httpGet:
+            port: 8080
+            path: /status
+        livenessProbe:
+          httpGet:
+            port: 8080
+            path: /status
+          periodSeconds: 10
+        resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
