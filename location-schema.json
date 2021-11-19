@@ -1,0 +1,15 @@
+{
+   "columns": [
+   	 {"name": "id", "type": "uuid"},
+   	 {"name": "lat", "type": "double"},
+   	 {"name": "lng", "type": "double"},
+   	 {"name": "timestamp", "type": "timestamp"},
+   	 {"name": "device", "type": "varchar"}
+   ],
+   "partitionKeys": [
+   	 {"name": "timestamp"}
+   ],
+   "clusterKeys": [
+   	 {"name": "id", "orderBy": "asc"}
+   ]
+}
