@@ -13,26 +13,26 @@ spec:
         app: cedar-listener
     spec:
       containers:
-      - name: cedar-listener
-        image: cedarcr.azurecr.io/cedar-listener:v1
-        imagePullPolicy: Always
-        env:
-        - name: STREAM_CONN_STR
-          valueFrom:
-            secretKeyRef:
-              name: cedar-stream
-              key: connectionstring
-        readinessProbe:
-          httpGet:
-            port: 8080
-            path: /status
-          periodSeconds: 20
-        livenessProbe:
-          httpGet:
-            port: 8080
-            path: /status
-          periodSeconds: 20
-        resources:
+        - name: cedar-listener
+          image: cedarcr.azurecr.io/cedar-listener:v1
+          imagePullPolicy: Always
+          env:
+            - name: STREAM_CONN_STR
+              valueFrom:
+                secretKeyRef:
+                  name: cedar-stream
+                  key: connectionstring
+          readinessProbe:
+            httpGet:
+              port: 8080
+              path: /status
+            periodSeconds: 20
+          livenessProbe:
+            httpGet:
+              port: 8080
+              path: /status
+            periodSeconds: 20
+          resources:
             requests:
               memory: "128Mi"
               cpu: "100m"
