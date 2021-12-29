@@ -20,8 +20,8 @@ spec:
             - name: STREAM_CONN_STR
               valueFrom:
                 secretKeyRef:
-                  name: cedar-stream
-                  key: connectionstring
+                  name: cedar-secret
+                  key: stream_connectionstring
           readinessProbe:
             httpGet:
               port: 8080

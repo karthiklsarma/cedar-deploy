@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cedar-config
+type: Opaque
+data:
+  cosmos_contact_point: <value>
+  cosmos_port: <value>
+  cosmos_username: <value>

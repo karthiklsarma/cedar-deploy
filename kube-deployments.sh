@@ -11,8 +11,9 @@ az aks get-credentials --resource-group cedar-rg --name cedar-ks
 #A different object named clusterUser_cedar-rg_cedar-ks already exists in your kubeconfig file.
 #Overwrite? (y/n): n
 
-kubectl create -f ./secrets/cedar-stream.yaml
+kubectl create -f ./secrets/cedar-secret.yaml
 kubectl create -f ./secrets/cedar-map.yaml
+kubectl create -f ./configmap/cedar-config.yaml
 kubectl create -f ./deployments/cedar-server.yaml
 kubectl create -f ./deployments/cedar-listener.yaml
 kubectl create -f ./services/cedar-server.yaml
