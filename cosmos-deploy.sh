@@ -15,7 +15,7 @@ az cosmosdb create \
 -g $resource_group \
 --default-consistency-level Eventual \
 --capabilities EnableCassandra \
---locations regionName='West US 2' failoverPriority=0 isZoneRedundant=False
+--locations regionName='East US' failoverPriority=0 isZoneRedundant=False
 
 az cosmosdb cassandra keyspace create \
 -a $cosmos_account \

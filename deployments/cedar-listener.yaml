@@ -36,7 +36,12 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: cedar-config
-                  key: cosmos_contact_point
+                  key: cosmos_port
+            - name: COSMOSDB_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: cedar-config
+                  key: cosmos_username
           readinessProbe:
             httpGet:
               port: 8080

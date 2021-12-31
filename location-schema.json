@@ -3,7 +3,7 @@
    	 {"name": "id", "type": "uuid"},
    	 {"name": "lat", "type": "double"},
    	 {"name": "lng", "type": "double"},
-   	 {"name": "timestamp", "type": "timestamp"},
+   	 {"name": "timestamp", "type": "int"},
    	 {"name": "device", "type": "varchar"}
    ],
    "partitionKeys": [
