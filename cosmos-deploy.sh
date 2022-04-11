@@ -3,7 +3,9 @@ resource_group=$1
 cosmos_account='cedarcosmosaccount'
 cosmos_keyspace='cedarcosmoskeyspace'
 location_table='cedarlocation'
+user_table='cedarusers'
 location_schema='@location-schema.json'
+user_schema='@user-schema.json'
 
 if [ -z "$resource_group" ]
 then
@@ -29,3 +31,11 @@ az cosmosdb cassandra table create \
 -n $location_table \
 --throughput 400 \
 --schema $location_schema
+
+az cosmosdb cassandra table create \
+-a $cosmos_account \
+-g $resource_group \
+-k $cosmos_keyspace \
+-n $user_table \
+--throughput 400 \
+--schema $user_schema

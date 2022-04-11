@@ -12,7 +12,7 @@ az aks get-credentials --resource-group cedar-rg --name cedar-ks
 #Overwrite? (y/n): n
 
 kubectl create -f ./secrets/cedar-secret.yaml
-kubectl create -f ./secrets/cedar-map.yaml
+# kubectl create -f ./secrets/cedar-map.yaml
 kubectl create -f ./configmap/cedar-config.yaml
 kubectl create -f ./deployments/cedar-server.yaml
 kubectl create -f ./deployments/cedar-listener.yaml
