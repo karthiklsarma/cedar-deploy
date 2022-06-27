@@ -22,6 +22,26 @@ spec:
                 secretKeyRef:
                   name: cedar-secret
                   key: stream_connectionstring
+            - name: COSMOSDB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: cedar-secret
+                  key: cosmosdb_password
+            - name: COSMOSDB_CONTACT_POINT
+              valueFrom:
+                configMapKeyRef:
+                  name: cedar-config
+                  key: cosmos_contact_point
+            - name: COSMOSDB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: cedar-config
+                  key: cosmos_port
+            - name: COSMOSDB_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: cedar-config
+                  key: cosmos_username
           readinessProbe:
             httpGet:
               port: 8080
